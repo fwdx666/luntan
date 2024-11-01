@@ -7,8 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint .",
-    "format": "prettier --write src/"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "format": "prettier --write src/",
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "pinia": "^2.2.4",
@@ -22,7 +23,13 @@
     "@vue/eslint-config-prettier": "7",
     "eslint": "^8.57.1",
     "eslint-plugin-vue": "^8.7.1",
+    "lint-staged": "^15.2.10",
     "prettier": "2",
     "vite": "^5.4.10"
+  }, 
+  "lint-staged": {
+    "*.{js,ts,vue}": [
+      "eslint --fix"
+    ]
   }
 }
