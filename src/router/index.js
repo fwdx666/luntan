@@ -3,7 +3,9 @@ import { useUserStore } from '@/stores'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [{ path: '/login', component: () => import('@/views/LoginIn.vue') }]
+  routes: [
+    { path: '/login', component: () => import('@/views/login/LoginIn.vue') }
+  ]
 })
 
 router.beforeEach(to => {

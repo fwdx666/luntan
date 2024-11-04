@@ -1,7 +1,12 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
+import { userRegisterService, userLoginService } from '@/api/user'
+import { useUserStore } from '@/stores'
+import router from '@/router'
 const isRegister = ref(false)
+const formRef = ref()
+const userStore = useUserStore()
 const formModel = ref({
   username: '',
   password: '',
@@ -43,6 +48,26 @@ const rules = {
     }
   ]
 }
+const register = async () => {
+  await formRef.value.validate()
+  await userRegisterService(formModel.value)
+  ElMessage.success('注册成功~')
+  isRegister.value = false
+}
+const login = async () => {
+  await formRef.value.validate()
+  const re = await userLoginService(formModel.value)
+  userStore.getToken(re.data.token)
+  ElMessage.success('登录成功~')
+  router.push('/')
+}
+watch(isRegister, () => {
+  formModel.value = {
+    username: '',
+    password: '',
+    repassword: ''
+  }
+})
 </script>
 <template>
   <div class="container">
@@ -53,8 +78,8 @@ const rules = {
           :model="formModel"
           :rules="rules"
           ref="formRef"
-          size="large"
           autocomplete="off"
+          size="large"
           v-if="isRegister"
         >
           <el-form-item>
@@ -84,7 +109,12 @@ const rules = {
             ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button class="button" type="primary" auto-insert-space>
+            <el-button
+              class="button"
+              type="primary"
+              auto-insert-space
+              @click="register"
+            >
               注册
             </el-button>
           </el-form-item>
@@ -115,7 +145,6 @@ const rules = {
           <el-form-item prop="password">
             <el-input
               v-model="formModel.password"
-              name="password"
               :prefix-icon="Lock"
               type="password"
               placeholder="请输入密码"
@@ -128,16 +157,20 @@ const rules = {
             </div>
           </el-form-item>
           <el-form-item>
-            <el-button class="button" type="primary" auto-insert-space
+            <el-button
+              class="button"
+              type="primary"
+              auto-insert-space
+              @click="login"
               >登录</el-button
             >
           </el-form-item>
           <el-form-item class="flex">
             <a href="http://38617112yi.zicp.vip/oauth/login">
-              <img src="@/assets/1.png" alt="" href="" />
+              <img src="@/assets/1.png" alt="" />
             </a>
             <a href="https://im.qq.com/index/">
-              <img src="@/assets/2.png" alt="" href="" />
+              <img src="@/assets/2.png" alt="" />
             </a>
             <el-link
               type="info"
@@ -163,7 +196,7 @@ img {
   width: 1000px;
   height: 700px;
   border-radius: 10px;
-  background: #fff;
+  // background: #fff;
   margin: 0 auto;
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.11);
   .banner {
@@ -181,13 +214,7 @@ img {
     height: 600px;
     .phone {
       width: 50%;
-      height: 250px;
-      // border: 1px #eee solid;
       margin: 10px auto;
-      position: relative;
-      .title {
-        margin: 0 auto;
-      }
       .button {
         width: 100%;
       }

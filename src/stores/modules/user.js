@@ -5,8 +5,8 @@ export const useUserStore = defineStore(
   'userinfo',
   () => {
     const token = ref('')
-    const getToken = () => {
-      token.value = '2324efdgf'
+    const getToken = tokenValue => {
+      token.value = tokenValue
     }
     return { token, getToken }
   },

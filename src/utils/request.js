@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useUserStore } from '@/stores'
-import router from './router'
+import router from '@/router'
 const baseURL = 'http://big-event-vue-api-t.itheima.net'
 const instance = axios.create({
   baseURL,
@@ -40,5 +40,7 @@ instance.interceptors.response.use(
     return Promise.reject(error)
   }
 )
+//默认导出, 每个模块只可以有一次, 导入方式为: import 可以取任意名字 from '@/utils/request'
 export default instance
+//命名导出, 每个模块可以有很多次, 导入方式为: import { baseURL }(必须是导出时使用的名字) from '@/utils/request'
 export { baseURL }
