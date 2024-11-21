@@ -182,7 +182,13 @@ const onEnterSearch = () => {
         </el-menu-item>
       </el-menu>
     </el-aside>
-    <el-main><router-view></router-view></el-main>
+    <el-main>
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
+    </el-main>
   </el-container>
   <AddEditArticle
     ref="AddEditArticleRef"

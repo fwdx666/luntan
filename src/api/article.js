@@ -2,6 +2,7 @@ import request from '@/utils/request'
 //获取文章列表
 export const artArticleListService = obj =>
   request.get('/my/article/list', { params: obj })
+//获取文章分类列表
 export const artArticleClassifyService = () => request.get('/my/cate/list')
 //发布文章
 export const artArticlePublishService = obj =>

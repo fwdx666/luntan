@@ -96,7 +96,12 @@ const setZan = () => {
 <template>
   <el-row>
     <el-col :span="17" v-loading="loading">
-      <div v-for="item in arr" :key="item.id" class="content-box">
+      <div
+        v-loading="loading"
+        v-for="item in arr"
+        :key="item.id"
+        class="content-box"
+      >
         <!-- 头像，用户名 -->
         <div class="content-box-top">
           <el-avatar
