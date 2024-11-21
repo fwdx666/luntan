@@ -4,17 +4,17 @@
 
 ## 项目页面截取: 
 
-![](E:\zhuomianzhuomian\11-day12-day14-大事件管理系统\assets\show1.png)
+![](assets\show1.png)
 
-![](E:\zhuomianzhuomian\11-day12-day14-大事件管理系统\assets\show2.png)
+![](assets\show2.png)
 
-![](E:\zhuomianzhuomian\11-day12-day14-大事件管理系统\assets\show3.png)
+![](assets\show3.png)
 
-![](E:\zhuomianzhuomian\11-day12-day14-大事件管理系统\assets\show4.png)
+![](assets\show4.png)
 
-![](E:\zhuomianzhuomian\11-day12-day14-大事件管理系统\assets\show5.png)
+![](assets\show5.png)
 
-![](E:\zhuomianzhuomian\11-day12-day14-大事件管理系统\assets\show6.png)
+![](assets\show6.png)
 
 
 
